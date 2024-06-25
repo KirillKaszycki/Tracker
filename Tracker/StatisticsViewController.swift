@@ -5,4 +5,16 @@
 //  Created by Кирилл Кашицкий on 25.06.2024.
 //
 
-import Foundation
+import UIKit
+
+final class StatisticsViewController: UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureBackground()
+    }
+    
+    private func configureBackground() {
+        view.backgroundColor = .ypWhite
+    }
+}

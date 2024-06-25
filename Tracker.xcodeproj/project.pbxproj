@@ -9,13 +9,15 @@
 /* Begin PBXBuildFile section */
 		E31E21562C2AF5F900EB067A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31E21552C2AF5F900EB067A /* AppDelegate.swift */; };
 		E31E21582C2AF5F900EB067A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31E21572C2AF5F900EB067A /* SceneDelegate.swift */; };
-		E31E215A2C2AF5F900EB067A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31E21592C2AF5F900EB067A /* ViewController.swift */; };
+		E31E215A2C2AF5F900EB067A /* TrackersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31E21592C2AF5F900EB067A /* TrackersViewController.swift */; };
 		E31E215D2C2AF5F900EB067A /* Base in Resources */ = {isa = PBXBuildFile; fileRef = E31E215C2C2AF5F900EB067A /* Base */; };
 		E31E215F2C2AF5FB00EB067A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E31E215E2C2AF5FB00EB067A /* Assets.xcassets */; };
 		E31E21622C2AF5FB00EB067A /* Base in Resources */ = {isa = PBXBuildFile; fileRef = E31E21612C2AF5FB00EB067A /* Base */; };
 		E31E216D2C2AF5FB00EB067A /* TrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31E216C2C2AF5FB00EB067A /* TrackerTests.swift */; };
 		E31E21772C2AF5FB00EB067A /* TrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31E21762C2AF5FB00EB067A /* TrackerUITests.swift */; };
 		E31E21792C2AF5FB00EB067A /* TrackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31E21782C2AF5FB00EB067A /* TrackerUITestsLaunchTests.swift */; };
+		E31E21882C2AFDE800EB067A /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31E21872C2AFDE800EB067A /* StatisticsViewController.swift */; };
+		E31E218B2C2AFE7900EB067A /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31E218A2C2AFE7900EB067A /* TabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +41,7 @@
 		E31E21522C2AF5F900EB067A /* Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E31E21552C2AF5F900EB067A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E31E21572C2AF5F900EB067A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E31E21592C2AF5F900EB067A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E31E21592C2AF5F900EB067A /* TrackersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackersViewController.swift; sourceTree = "<group>"; };
 		E31E215C2C2AF5F900EB067A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E31E215E2C2AF5FB00EB067A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E31E21612C2AF5FB00EB067A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +51,8 @@
 		E31E21722C2AF5FB00EB067A /* TrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E31E21762C2AF5FB00EB067A /* TrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerUITests.swift; sourceTree = "<group>"; };
 		E31E21782C2AF5FB00EB067A /* TrackerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		E31E21872C2AFDE800EB067A /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
+		E31E218A2C2AFE7900EB067A /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +105,9 @@
 			children = (
 				E31E21552C2AF5F900EB067A /* AppDelegate.swift */,
 				E31E21572C2AF5F900EB067A /* SceneDelegate.swift */,
-				E31E21592C2AF5F900EB067A /* ViewController.swift */,
+				E31E21892C2AFE6500EB067A /* TabBarController */,
+				E31E21862C2AFDCA00EB067A /* StatisticsView */,
+				E31E21852C2AFDBA00EB067A /* TrackersView */,
 				E31E215B2C2AF5F900EB067A /* Main.storyboard */,
 				E31E215E2C2AF5FB00EB067A /* Assets.xcassets */,
 				E31E21602C2AF5FB00EB067A /* LaunchScreen.storyboard */,
@@ -125,6 +131,30 @@
 				E31E21782C2AF5FB00EB067A /* TrackerUITestsLaunchTests.swift */,
 			);
 			path = TrackerUITests;
+			sourceTree = "<group>";
+		};
+		E31E21852C2AFDBA00EB067A /* TrackersView */ = {
+			isa = PBXGroup;
+			children = (
+				E31E21592C2AF5F900EB067A /* TrackersViewController.swift */,
+			);
+			path = TrackersView;
+			sourceTree = "<group>";
+		};
+		E31E21862C2AFDCA00EB067A /* StatisticsView */ = {
+			isa = PBXGroup;
+			children = (
+				E31E21872C2AFDE800EB067A /* StatisticsViewController.swift */,
+			);
+			name = StatisticsView;
+			sourceTree = "<group>";
+		};
+		E31E21892C2AFE6500EB067A /* TabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				E31E218A2C2AFE7900EB067A /* TabBarController.swift */,
+			);
+			path = TabBarController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,9 +288,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E31E215A2C2AF5F900EB067A /* ViewController.swift in Sources */,
+				E31E215A2C2AF5F900EB067A /* TrackersViewController.swift in Sources */,
 				E31E21562C2AF5F900EB067A /* AppDelegate.swift in Sources */,
 				E31E21582C2AF5F900EB067A /* SceneDelegate.swift in Sources */,
+				E31E218B2C2AFE7900EB067A /* TabBarController.swift in Sources */,
+				E31E21882C2AFDE800EB067A /* StatisticsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,6 +482,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -478,6 +511,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

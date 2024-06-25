@@ -7,13 +7,15 @@
 
 import UIKit
 
-class TrackersViewController: UIViewController {
+final class TrackersViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        configureBackground()
     }
-
-
+    
+    private func configureBackground() {
+        view.backgroundColor = .ypWhite
+    }
 }
 
