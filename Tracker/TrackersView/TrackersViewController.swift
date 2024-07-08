@@ -62,12 +62,12 @@ final class TrackersViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             trackerStarImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            trackerStarImageView.bottomAnchor.constraint(equalTo: trackerStarLabel.topAnchor, constant: -8),
+            trackerStarImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             trackerStarImageView.widthAnchor.constraint(equalToConstant: 80),
-            trackerStarLabel.heightAnchor.constraint(equalToConstant: 80),
             
-            trackerStarLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -220),
-            trackerStarLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            trackerStarLabel.heightAnchor.constraint(equalToConstant: 80),
+            trackerStarLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            trackerStarLabel.topAnchor.constraint(equalTo: trackerStarImageView.bottomAnchor, constant: -8)
         ])
     }
     
