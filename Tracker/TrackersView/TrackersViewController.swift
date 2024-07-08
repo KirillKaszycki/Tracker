@@ -64,10 +64,10 @@ final class TrackersViewController: UIViewController {
             trackerStarImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             trackerStarImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             trackerStarImageView.widthAnchor.constraint(equalToConstant: 80),
+            trackerStarImageView.heightAnchor.constraint(equalToConstant: 80),
             
-            trackerStarLabel.heightAnchor.constraint(equalToConstant: 80),
             trackerStarLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            trackerStarLabel.topAnchor.constraint(equalTo: trackerStarImageView.bottomAnchor, constant: -8)
+            trackerStarLabel.topAnchor.constraint(equalTo: trackerStarImageView.bottomAnchor, constant: 8)
         ])
     }
     
