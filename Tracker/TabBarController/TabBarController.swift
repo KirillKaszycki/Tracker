@@ -12,7 +12,9 @@ final class TabBarController: UITabBarController {
         super.viewDidLoad()
         
         let trackersViewController = TrackersViewController()
-        trackersViewController.tabBarItem = UITabBarItem(
+        
+        let navigationViewController = UINavigationController(rootViewController: trackersViewController)
+        navigationViewController.tabBarItem = UITabBarItem(
             title: "Трекеры",
             image: UIImage(named: "trackers_active"),
             selectedImage: nil
@@ -25,7 +27,7 @@ final class TabBarController: UITabBarController {
             selectedImage: nil
         )
         
-        self.viewControllers = [trackersViewController, statisticsViewController]
+        self.viewControllers = [navigationViewController, statisticsViewController]
         
         addTabBarBorder()
     }
