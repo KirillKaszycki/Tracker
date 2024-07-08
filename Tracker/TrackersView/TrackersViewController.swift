@@ -42,6 +42,14 @@ final class TrackersViewController: UIViewController {
         return dateSelector
     }()
     
+    private var categories: [TrackerCategory] = [
+        TrackerCategory(header: "Test",
+                        trackersArray:
+                            [Tracker(id: UUID(), name: "Do smth", color: .cSelection2, emoji: "", schedule: [.Tuesday, .Saturday])])]
+    
+    private var completedTrackers: [TrackerRecord] = []
+    private var visibleTrackers: [TrackerCategory] = []
+    
     // MARK: LifeTime
     override func viewDidLoad() {
         super.viewDidLoad()
