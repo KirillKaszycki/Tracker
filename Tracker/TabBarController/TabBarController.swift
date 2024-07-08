@@ -33,17 +33,20 @@ final class TabBarController: UITabBarController {
     }
     
     private func addTabBarBorder() {
-        let border = UIView()
-        border.backgroundColor = .lightGray
-        border.translatesAutoresizingMaskIntoConstraints = false
-        tabBar.addSubview(border)
+//        let border = UIView()
+//        border.backgroundColor = .lightGray
+//        border.translatesAutoresizingMaskIntoConstraints = false
+//        tabBar.addSubview(border)
+//        
+//        NSLayoutConstraint.activate([
+//            border.topAnchor.constraint(equalTo: tabBar.topAnchor),
+//            border.leadingAnchor.constraint(equalTo: tabBar.leadingAnchor),
+//            border.trailingAnchor.constraint(equalTo: tabBar.trailingAnchor),
+//            border.heightAnchor.constraint(equalToConstant: 1)
+//        ])
         
-        NSLayoutConstraint.activate([
-            border.topAnchor.constraint(equalTo: tabBar.topAnchor),
-            border.leadingAnchor.constraint(equalTo: tabBar.leadingAnchor),
-            border.trailingAnchor.constraint(equalTo: tabBar.trailingAnchor),
-            border.heightAnchor.constraint(equalToConstant: 1)
-        ])
+        tabBar.layer.borderWidth = 0.5
+        tabBar.layer.borderColor = UIColor.ypGray.cgColor
     }
 }
 
