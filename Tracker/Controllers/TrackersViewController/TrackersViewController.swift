@@ -70,9 +70,9 @@ final class TrackersViewController: UIViewController {
     private func configureBackground() {
         view.backgroundColor = .ypWhite
         
-        lazy var subView: [UIView] = [trackerStarImageView, trackerStarLabel]
+        let subViews: [UIView] = [trackerStarImageView, trackerStarLabel]
         
-        subView.forEach {
+        subViews.forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             self.view.addSubview($0)
         }
@@ -143,7 +143,7 @@ final class TrackersViewController: UIViewController {
         view.addSubview(collectionView)
         
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: searchController.searchBar.bottomAnchor, constant: 10),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
@@ -197,37 +197,27 @@ extension TrackersViewController: UICollectionViewDataSource, UICollectionViewDe
         cell.configTrackerCell(with: tracker, days: days, isCompleted: isTerminated)
         cell.buttonTap = { [weak self] in
             self?.setUpTrackerCellTermination(for: tracker)
-            
-            if let cell = collectionView.cellForItem(at: indexPath) as? TrackerViewCell {
-                let days = self?.completedTrackers.filter { $0.id == tracker.id }.count ?? 0
-                let isTerminated = self?.completedTrackers.contains {
-                    $0.id == tracker.id && Calendar.current.isDate($0.date, inSameDayAs: self?.selectedDate ?? Date())
-                } ?? false
-                cell.configTrackerCell(with: tracker, days: days, isCompleted: isTerminated)
-            }
         }
         return cell
     }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let padding: CGFloat = 9
-        let availableWidth = collectionView.frame.width - padding
-        let width = availableWidth / 2
-        return CGSize(width: width, height: 148)
-    }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        switch kind{
+        switch kind {
         case UICollectionView.elementKindSectionHeader:
-            guard let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "TrackersHeaderReusableView", for: indexPath) as? TrackersHeaderReusableView else {
+            guard let header = collectionView.dequeueReusableSupplementaryView(
+                ofKind: kind,
+                withReuseIdentifier: "TrackersHeaderReusableView",
+                for: indexPath
+            ) as? TrackersHeaderReusableView else {
                 return UICollectionReusableView()
             }
-            view.titleArea.text = trackers[indexPath.section].header
-            return view
-        default: return UICollectionReusableView()
+            header.configureHeader(for: trackers[indexPath.section])
+            return header
+        default:
+            return UICollectionReusableView()
         }
     }
-    
+
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return trackers.count
     }
