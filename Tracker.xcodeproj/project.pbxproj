@@ -142,23 +142,14 @@
 			path = TrackerUITests;
 			sourceTree = "<group>";
 		};
-		E31E21852C2AFDBA00EB067A /* TrackersView */ = {
+		E31E21852C2AFDBA00EB067A /* TrackersViewController */ = {
 			isa = PBXGroup;
 			children = (
 				E31E21592C2AF5F900EB067A /* TrackersViewController.swift */,
 				E3A87BC42C402D77008936E6 /* TrackerViewCell.swift */,
 				E3E606AB2C419FDE0038A9C9 /* TrackersHeaderReusableView.swift */,
 			);
-			path = TrackersView;
-			sourceTree = "<group>";
-		};
-		E31E21862C2AFDCA00EB067A /* StatisticsView */ = {
-			isa = PBXGroup;
-			children = (
-				E31E21872C2AFDE800EB067A /* StatisticsViewController.swift */,
-			);
-			name = StatisticsView;
-			path = ..;
+			path = TrackersViewController;
 			sourceTree = "<group>";
 		};
 		E31E21892C2AFE6500EB067A /* TabBarController */ = {
@@ -172,11 +163,19 @@
 		E3E606A92C419BB60038A9C9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E3E606AD2C41A7800038A9C9 /* StatisticsViewController */,
 				E31E21892C2AFE6500EB067A /* TabBarController */,
-				E31E21852C2AFDBA00EB067A /* TrackersView */,
-				E31E21862C2AFDCA00EB067A /* StatisticsView */,
+				E31E21852C2AFDBA00EB067A /* TrackersViewController */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		E3E606AD2C41A7800038A9C9 /* StatisticsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E31E21872C2AFDE800EB067A /* StatisticsViewController.swift */,
+			);
+			path = StatisticsViewController;
 			sourceTree = "<group>";
 		};
 		E3FB53192C3C151800E711B6 /* Models */ = {
