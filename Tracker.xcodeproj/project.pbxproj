@@ -113,10 +113,8 @@
 			children = (
 				E31E21552C2AF5F900EB067A /* AppDelegate.swift */,
 				E31E21572C2AF5F900EB067A /* SceneDelegate.swift */,
+				E3E606A92C419BB60038A9C9 /* Controllers */,
 				E3FB53192C3C151800E711B6 /* Models */,
-				E31E21892C2AFE6500EB067A /* TabBarController */,
-				E31E21862C2AFDCA00EB067A /* StatisticsView */,
-				E31E21852C2AFDBA00EB067A /* TrackersView */,
 				E31E215B2C2AF5F900EB067A /* Main.storyboard */,
 				E31E215E2C2AF5FB00EB067A /* Assets.xcassets */,
 				E31E21602C2AF5FB00EB067A /* LaunchScreen.storyboard */,
@@ -157,6 +155,7 @@
 				E31E21872C2AFDE800EB067A /* StatisticsViewController.swift */,
 			);
 			name = StatisticsView;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		E31E21892C2AFE6500EB067A /* TabBarController */ = {
@@ -165,6 +164,16 @@
 				E31E218A2C2AFE7900EB067A /* TabBarController.swift */,
 			);
 			path = TabBarController;
+			sourceTree = "<group>";
+		};
+		E3E606A92C419BB60038A9C9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E31E21892C2AFE6500EB067A /* TabBarController */,
+				E31E21852C2AFDBA00EB067A /* TrackersView */,
+				E31E21862C2AFDCA00EB067A /* StatisticsView */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		E3FB53192C3C151800E711B6 /* Models */ = {
