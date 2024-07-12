@@ -56,11 +56,14 @@ final class TrackersViewController: UIViewController {
     private var selectedDate = Date()
     private var collectionView: UICollectionView!
     
+    private let searchController = UISearchController(searchResultsController: nil)
+    
     // MARK: LifeTime
     override func viewDidLoad() {
         super.viewDidLoad()
         configureBackground()
         configureNavigation()
+        configCollectionViewCell()
     }
     
     // MARK: Config ViewController
@@ -93,7 +96,6 @@ final class TrackersViewController: UIViewController {
         navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.ypBlack]
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.placeholder = "Поиск"
         navigationItem.searchController = searchController
     }
@@ -114,6 +116,38 @@ final class TrackersViewController: UIViewController {
             }
             collectionView.reloadData()
         }
+    }
+    
+    private func configCollectionViewCell () {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.minimumLineSpacing = 10
+        flowLayout.minimumInteritemSpacing = 9
+        flowLayout.headerReferenceSize = .init(width: view.frame.size.width, height: 40)
+        
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        
+        collectionView.register(
+            TrackerViewCell.self,
+            forCellWithReuseIdentifier: "TrackerViewCell"
+        )
+        collectionView.register(
+            TrackersHeaderReusableView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: "TrackersHeaderReusableView"
+        )
+        
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .clear
+        view.addSubview(collectionView)
+        
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: searchController.searchBar.bottomAnchor, constant: 10),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+        ])
     }
     
     @objc private func addTrackerButton() {
@@ -146,13 +180,55 @@ extension TrackersViewController: UICollectionViewDelegate {
     }
 }
 
-//extension TrackersViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        <#code#>
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        <#code#>
-//    }
-//
-//}
+extension TrackersViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return trackers[section].trackersArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TrackerViewCell", for: indexPath) as? TrackerViewCell else {
+            fatalError("Cell presenting error")
+        }
+        let tracker = trackers[indexPath.section].trackersArray[indexPath.item]
+        
+        let days = completedTrackers.filter { $0.id == tracker.id }.count
+        let isTerminated = completedTrackers.contains { $0.id == tracker.id && Calendar.current.isDate($0.date, inSameDayAs: selectedDate) }
+        
+        cell.configTrackerCell(with: tracker, days: days, isCompleted: isTerminated)
+        cell.buttonTap = { [weak self] in
+            self?.setUpTrackerCellTermination(for: tracker)
+            
+            if let cell = collectionView.cellForItem(at: indexPath) as? TrackerViewCell {
+                let days = self?.completedTrackers.filter { $0.id == tracker.id }.count ?? 0
+                let isTerminated = self?.completedTrackers.contains {
+                    $0.id == tracker.id && Calendar.current.isDate($0.date, inSameDayAs: self?.selectedDate ?? Date())
+                } ?? false
+                cell.configTrackerCell(with: tracker, days: days, isCompleted: isTerminated)
+            }
+        }
+        return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let padding: CGFloat = 9
+        let availableWidth = collectionView.frame.width - padding
+        let width = availableWidth / 2
+        return CGSize(width: width, height: 148)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind{
+        case UICollectionView.elementKindSectionHeader:
+            guard let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "TrackersHeaderReusableView", for: indexPath) as? TrackersHeaderReusableView else {
+                return UICollectionReusableView()
+            }
+            view.titleArea.text = trackers[indexPath.section].header
+            return view
+        default: return UICollectionReusableView()
+        }
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return trackers.count
+    }
+}
