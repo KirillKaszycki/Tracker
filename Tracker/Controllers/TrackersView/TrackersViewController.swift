@@ -154,6 +154,5 @@ extension TrackersViewController: UICollectionViewDelegate {
 //    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 //        <#code#>
 //    }
-//    
-//    
+//
 //}
