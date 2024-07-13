@@ -8,7 +8,7 @@
 import UIKit
 
 final class TrackersViewController: UIViewController {
-
+    
     // MARK: Variables
     private let trackerStarImageView: UIImageView = {
         let image = UIImageView()
@@ -151,6 +151,10 @@ final class TrackersViewController: UIViewController {
     }
     
     @objc private func addTrackerButton() {
+        let viewController = AddTrackerViewController()
+        viewController.delegate = self
+        viewController.modalPresentationStyle = .popover
+        present(viewController, animated: true, completion: nil)
         print("Button AddTracker pushed")
     }
     
@@ -168,6 +172,14 @@ final class TrackersViewController: UIViewController {
     }
 }
 
+// MARK: - Extension for AddTrackerDelegate
+extension TrackersViewController: AddTrackerDelegate {
+    func didAddNewTracker(_ tracker: Tracker) {
+        print()
+    }
+}
+    
+// MARK: - Extensions for UIConnectionView Logics
 extension TrackersViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let tracker = trackers[indexPath.section].trackersArray[indexPath.item]
