@@ -85,10 +85,18 @@ final class AddTrackerViewController: UIViewController {
     }
     
     @objc func didTapHabbitButton() {
-        
+        let viewController = AddNewHabbitViewController()
+        viewController.modalPresentationStyle = .popover
+        present(viewController, animated: true, completion: nil)
     }
     
     @objc func didTapIrregularEventButton() {
         
+    }
+}
+
+extension AddTrackerViewController: AddNewHabbitDelegate {
+    func didAddNewHAbbit(_ tracker: Tracker) {
+        delegate?.didAddNewTracker(tracker)
     }
 }
