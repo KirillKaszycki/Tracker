@@ -8,5 +8,6 @@
 import UIKit
 
 final class AddNewHabbitViewController: UIViewController {
-    
+    weak var habbitDelegate: AddNewHabbitDelegate?
+    weak var scheduleDelegate: ScheduleDelegate?
 }

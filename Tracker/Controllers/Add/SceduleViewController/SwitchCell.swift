@@ -8,7 +8,7 @@
 import UIKit
 
 final class SwitchCell: UITableViewCell {
-    weak var delegate: SceduleCellDelegate?
+    weak var delegate: ScheduleCellDelegate?
     private var days: Weekdays?
     
     //MARK: UI config

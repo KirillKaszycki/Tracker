@@ -7,10 +7,10 @@
 
 import UIKit
 
-final class ScheduleViewController: UIViewController, SceduleCellDelegate {
+final class ScheduleViewController: UIViewController, ScheduleCellDelegate {
     
     private var days: Set<Weekdays> = []
-    weak var delegate: SceduleDelegate?
+    weak var delegate: ScheduleDelegate?
     
     private let tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
@@ -101,15 +101,17 @@ extension ScheduleViewController: UITableViewDataSource {
         return 75
     }
 
-    private func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0.001
     }
     
-    private func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return UIView(frame: .zero)
     }
 }
 
 extension ScheduleViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
