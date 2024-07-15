@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E3146C0D2C45219B0066D66C /* AddNewHabbitDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3146C0C2C45219B0066D66C /* AddNewHabbitDelegate.swift */; };
+		E3146C102C4521EA0066D66C /* SceduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3146C0F2C4521EA0066D66C /* SceduleViewController.swift */; };
+		E3146C122C45221A0066D66C /* SceduleDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3146C112C45221A0066D66C /* SceduleDelegate.swift */; };
+		E3146C142C4522780066D66C /* SceduleCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3146C132C4522780066D66C /* SceduleCellDelegate.swift */; };
+		E3146C162C4524630066D66C /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3146C152C4524630066D66C /* SwitchCell.swift */; };
 		E31E21562C2AF5F900EB067A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31E21552C2AF5F900EB067A /* AppDelegate.swift */; };
 		E31E21582C2AF5F900EB067A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31E21572C2AF5F900EB067A /* SceneDelegate.swift */; };
 		E31E215A2C2AF5F900EB067A /* TrackersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31E21592C2AF5F900EB067A /* TrackersViewController.swift */; };
@@ -47,6 +52,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E3146C0C2C45219B0066D66C /* AddNewHabbitDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewHabbitDelegate.swift; sourceTree = "<group>"; };
+		E3146C0F2C4521EA0066D66C /* SceduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceduleViewController.swift; sourceTree = "<group>"; };
+		E3146C112C45221A0066D66C /* SceduleDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceduleDelegate.swift; sourceTree = "<group>"; };
+		E3146C132C4522780066D66C /* SceduleCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceduleCellDelegate.swift; sourceTree = "<group>"; };
+		E3146C152C4524630066D66C /* SwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
 		E31E21522C2AF5F900EB067A /* Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E31E21552C2AF5F900EB067A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E31E21572C2AF5F900EB067A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +108,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E3146C0E2C4521CF0066D66C /* SceduleViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E3146C0F2C4521EA0066D66C /* SceduleViewController.swift */,
+				E3146C112C45221A0066D66C /* SceduleDelegate.swift */,
+				E3146C132C4522780066D66C /* SceduleCellDelegate.swift */,
+				E3146C152C4524630066D66C /* SwitchCell.swift */,
+			);
+			path = SceduleViewController;
+			sourceTree = "<group>";
+		};
 		E31E21492C2AF5F900EB067A = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +192,7 @@
 		E3DAF7FB2C420BE400BD2329 /* Add */ = {
 			isa = PBXGroup;
 			children = (
+				E3146C0E2C4521CF0066D66C /* SceduleViewController */,
 				E3DAF8002C420C2D00BD2329 /* AddNewIrregularEventViewController */,
 				E3DAF7FF2C420C1700BD2329 /* AddNewHabbitViewController */,
 				E3DAF7FC2C420BED00BD2329 /* AddTrackerViewController */,
@@ -191,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				E3DAF8012C420C6200BD2329 /* AddNewHabbitViewController.swift */,
+				E3146C0C2C45219B0066D66C /* AddNewHabbitDelegate.swift */,
 			);
 			path = AddNewHabbitViewController;
 			sourceTree = "<group>";
@@ -368,12 +391,17 @@
 				E3DAF8022C420C6200BD2329 /* AddNewHabbitViewController.swift in Sources */,
 				E3DAF7FE2C420C0600BD2329 /* AddTrackerViewController.swift in Sources */,
 				E3FB531F2C3C170600E711B6 /* TrackerRecord.swift in Sources */,
+				E3146C162C4524630066D66C /* SwitchCell.swift in Sources */,
 				E31E215A2C2AF5F900EB067A /* TrackersViewController.swift in Sources */,
 				E31E21562C2AF5F900EB067A /* AppDelegate.swift in Sources */,
+				E3146C0D2C45219B0066D66C /* AddNewHabbitDelegate.swift in Sources */,
 				E3DAF8062C420CF300BD2329 /* AddTrackerDelegate.swift in Sources */,
 				E31E21582C2AF5F900EB067A /* SceneDelegate.swift in Sources */,
+				E3146C102C4521EA0066D66C /* SceduleViewController.swift in Sources */,
 				E31E218B2C2AFE7900EB067A /* TabBarController.swift in Sources */,
 				E31E21882C2AFDE800EB067A /* StatisticsViewController.swift in Sources */,
+				E3146C122C45221A0066D66C /* SceduleDelegate.swift in Sources */,
+				E3146C142C4522780066D66C /* SceduleCellDelegate.swift in Sources */,
 				E3A87BC52C402D77008936E6 /* TrackerViewCell.swift in Sources */,
 				E3DAF8042C420C9C00BD2329 /* AddNewIrregularEventViewController.swift in Sources */,
 				E3FB531D2C3C16F700E711B6 /* TrackerCategory.swift in Sources */,
