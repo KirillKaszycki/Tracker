@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol SceduleCellDelegate: AnyObject {
+protocol ScheduleCellDelegate: AnyObject {
     func buttonClicked(to isSelected: Bool, of day: Weekdays)
 }

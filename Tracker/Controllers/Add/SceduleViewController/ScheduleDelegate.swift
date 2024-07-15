@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol SceduleDelegate: AnyObject {
+protocol ScheduleDelegate: AnyObject {
     func didChoseDays(_ days: [Weekdays])
 }

@@ -7,9 +7,10 @@
 
 import UIKit
 
-final class SceduleViewController: UIViewController {
+final class ScheduleViewController: UIViewController, SceduleCellDelegate {
+    
     private var days: Set<Weekdays> = []
-    private weak var delegate: SceduleDelegate?
+    weak var delegate: SceduleDelegate?
     
     private let tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
@@ -75,9 +76,13 @@ final class SceduleViewController: UIViewController {
         delegate?.didChoseDays(weekdays)
         self.dismiss(animated: true)
     }
+    
+    func buttonClicked(to isSelected: Bool, of day: Weekdays) {
+        _ = isSelected ? { days.insert(day) }() : { days.remove(day) }()
+    }
 }
 
-extension SceduleViewController: UITableViewDataSource {
+extension ScheduleViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Weekdays.allCases.count
     }
@@ -95,4 +100,16 @@ extension SceduleViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75
     }
+
+    private func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0.001
+    }
+    
+    private func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return UIView(frame: .zero)
+    }
+}
+
+extension ScheduleViewController: UITableViewDelegate {
+    
 }
