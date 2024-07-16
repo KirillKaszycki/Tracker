@@ -7,11 +7,11 @@
 
 import UIKit
 
-final class AddNewHabbitViewController: UIViewController {
+final class AddNewHabbitViewController: UIViewController, ScheduleDelegate {
     weak var habbitDelegate: AddNewHabbitDelegate?
     weak var scheduleDelegate: ScheduleDelegate?
     
-    private var days: [Weekdays] = []
+    private var chosenDays: [Weekdays] = []
     
     private var habit: [(name: String, settings: String)] = [
         (name: "Категория", settings: ""),
@@ -77,6 +77,10 @@ final class AddNewHabbitViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureView()
+        addTargetsForUIElements()
+        tableView.dataSource = self
+        tableView.delegate = self
     }
     
     private func addTargetsForUIElements() {
@@ -86,8 +90,8 @@ final class AddNewHabbitViewController: UIViewController {
     }
     
     private func configureView() {
+        view.backgroundColor = .ypWhite
         let width = (view.frame.width - 48) / 2
-        
         let views = [tableView, titleArea, nameTextArea, addButton, cancelButton]
         views.forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -122,13 +126,24 @@ final class AddNewHabbitViewController: UIViewController {
     }
     
     private func verification() {
-        if let text = nameTextArea.text, !text.isEmpty && !days.isEmpty {
+        if let text = nameTextArea.text, !text.isEmpty && !chosenDays.isEmpty {
             addButton.backgroundColor = .ypBlack
             addButton.isEnabled = true
         } else {
             addButton.backgroundColor = .ypGray
             addButton.isEnabled = false
         }
+    }
+    
+    private func moveToSchedule() {
+        let scheduleVC = ScheduleViewController()
+        scheduleVC.delegate = self
+        scheduleVC.modalPresentationStyle = .popover
+        present(scheduleVC, animated: true, completion: nil)
+    }
+    
+    private func moveToCategory() {
+        
     }
     
     @objc private func textAreaChanged(_ textArea: UITextField) {
@@ -142,19 +157,19 @@ final class AddNewHabbitViewController: UIViewController {
     
     @objc private func addButtonTapped() {
         guard let trackerHeader = nameTextArea.text else { return }
-        let newTracker = Tracker(
+        let tracker = Tracker(
             id: UUID(),
             name: trackerHeader,
             color: .cSelection4,
             emoji: "😳",
-            schedule: days
+            schedule: chosenDays
         )
-        habbitDelegate?.didAddNewHAbbit(newTracker)
+        habbitDelegate?.didAddNewHAbbit(tracker)
         dismiss(animated: true)
     }
     
     @objc private func cancelButtonTapped() {
-        days.removeAll()
+        chosenDays.removeAll()
         dismiss(animated: true, completion: nil)
     }
     
@@ -164,10 +179,60 @@ final class AddNewHabbitViewController: UIViewController {
     }
     
     func didChoseDays(_ days: [Weekdays]) {
-        let chosenDays = days
+        chosenDays = days
         let schedule = days.isEmpty ? "" : days.map { $0.shortName }.joined(separator: ", ")
         habit[1].settings = schedule
         tableView.reloadData()
         dismiss(animated: true)
     }
 }
+
+extension AddNewHabbitViewController: UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
+        cell.textLabel?.font = UIFont(name: "YSDisplay-Medium", size: 17)
+        cell.detailTextLabel?.font = UIFont(name: "YSDisplay-Medium", size: 17)
+        cell.textLabel?.textColor = .black
+        cell.detailTextLabel?.textColor = .gray
+        cell.textLabel?.text = habit[indexPath.row].name
+        cell.detailTextLabel?.text = habit[indexPath.row].settings
+        cell.backgroundColor = .clear
+        cell.accessoryType = .disclosureIndicator
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0.001
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return UIView(frame: .zero)
+    }
+}
+
+
+extension AddNewHabbitViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 76
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.row {
+        case 0:
+            moveToCategory()
+        case 1:
+            moveToSchedule()
+        default:
+            break
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
+        verification()
+    }
+}
+

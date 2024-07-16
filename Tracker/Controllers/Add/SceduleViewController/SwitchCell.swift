@@ -45,7 +45,8 @@ final class SwitchCell: UITableViewCell {
     
     private func configureView() {
         contentView.backgroundColor = UIColor(named: "TextFieldBackGround")
-        let contentViewHeight = contentView.heightAnchor.constraint(equalToConstant: 75).isActive
+        let contentViewHeight = contentView.heightAnchor.constraint(equalToConstant: 75)
+        contentViewHeight.isActive = true
         
         let views = [separatorView, cellHeader, dayEnableSwitch]
         views.forEach {

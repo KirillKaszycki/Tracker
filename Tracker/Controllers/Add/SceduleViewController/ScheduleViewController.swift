@@ -1,10 +1,3 @@
-//
-//  SceduleViewController.swift
-//  Tracker
-//
-//  Created by Кирилл Кашицкий on 15.07.2024.
-//
-
 import UIKit
 
 final class ScheduleViewController: UIViewController, ScheduleCellDelegate {
@@ -18,8 +11,6 @@ final class ScheduleViewController: UIViewController, ScheduleCellDelegate {
         table.separatorStyle = .singleLine
         table.isScrollEnabled = false
         table.sectionHeaderHeight = 0
-        table.register(UITableView.self, forCellReuseIdentifier: "cell")
-        table.tableHeaderView = nil
         return table
     }()
     
@@ -42,6 +33,9 @@ final class ScheduleViewController: UIViewController, ScheduleCellDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureView()
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
     private func configureView() {
@@ -66,7 +60,6 @@ final class ScheduleViewController: UIViewController, ScheduleCellDelegate {
             isDoneButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             isDoneButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             isDoneButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 16),
-            isDoneButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             isDoneButton.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
@@ -88,7 +81,7 @@ extension ScheduleViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SwitchCell", for: indexPath) as? SwitchCell else { fatalError("No cel' found") }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SwitchCell", for: indexPath) as? SwitchCell else { fatalError("No cell found") }
         
         cell.delegate = self
         cell.selectionStyle = .none

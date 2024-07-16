@@ -61,7 +61,7 @@ final class TrackersViewController: UIViewController {
     // MARK: LifeTime
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureBackground()
+        changeStarVisibility()
         configureNavigation()
         configCollectionViewCell()
     }
@@ -150,6 +150,23 @@ final class TrackersViewController: UIViewController {
         ])
     }
     
+    private func filterCellsForDay(for chosenDay: Weekdays) {
+        trackers = categories.map { category in
+            let trackers = category.trackersArray.filter { $0.schedule.contains(chosenDay) }
+            return TrackerCategory(header: category.header, trackersArray: trackers)
+        }.filter{ !$0.trackersArray.isEmpty }
+        collectionView.reloadData()
+    }
+    
+    private func changeStarVisibility() {
+        if trackers.isEmpty {
+            configureBackground()
+        } else {
+            trackerStarLabel.isHidden = true
+            trackerStarImageView.isHidden = true
+        }
+    }
+    
     @objc private func addTrackerButton() {
         let viewController = AddTrackerViewController()
         viewController.delegate = self
@@ -169,6 +186,8 @@ final class TrackersViewController: UIViewController {
         let day = calendar.component(.weekday, from: sender.date)
         let dayNum = (day + 5) % 7
         let selectedDay = Weekdays.allCases[dayNum]
+        filterCellsForDay(for: selectedDay)
+        
     }
 }
 
