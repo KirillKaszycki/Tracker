@@ -74,15 +74,15 @@ final class SwitchCell: UITableViewCell {
         ])
     }
     
+    @objc private func switcherTapped(_ sender: UISwitch) {
+        guard let weekDay = days else { return }
+        delegate?.buttonClicked(to: sender.isOn, of: weekDay)
+    }
+    
     func configureDayCell(with day: Weekdays, isLastCell: Bool, isSelected: Bool) {
         self.days = day
         cellHeader.text = days?.rawValue
         separatorView.isHidden = isLastCell
         dayEnableSwitch.isOn = isSelected
-    }
-    
-    @objc private func switcherTapped(_ sender: UISwitch) {
-        guard let weekDay = days else { return }
-        delegate?.buttonClicked(to: sender.isOn, of: weekDay)
     }
 }
