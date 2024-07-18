@@ -194,7 +194,27 @@ final class TrackersViewController: UIViewController {
 // MARK: - Extension for AddTrackerDelegate
 extension TrackersViewController: AddTrackerDelegate {
     func didAddNewTracker(_ tracker: Tracker) {
-        print()
+        var category: TrackerCategory?
+        var index: Int?
+        var mockCategory: String = "Sample Categoty"
+        
+        for categoryNum in 0..<categories.count {
+            if categories[categoryNum].header == mockCategory {
+                category = categories[categoryNum]
+                index = categoryNum
+            }
+        }
+        
+        if category == nil {
+            categories.append(TrackerCategory(header: mockCategory, trackersArray: [tracker]))
+        } else {
+            let newTrackerList = (category?.trackersArray ?? []) + [tracker]
+            let sortedTrackersList = newTrackerList.sorted { $0.name < $1.name }
+            let updateCategory = TrackerCategory(header: mockCategory, trackersArray: sortedTrackersList)
+            categories.remove(at: index ?? 0)
+            categories.insert(updateCategory, at: index ?? 0)
+        }
+        
     }
 }
     
