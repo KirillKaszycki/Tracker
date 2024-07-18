@@ -34,9 +34,9 @@ final class AddNewIrregularEventViewController: UIViewController {
         return label
     }()
     
-    private let nameTextArea: UITextField = {
+    private lazy var nameTextArea: UITextField = {
         let area = UITextField()
-        area.backgroundColor = UIColor(named: "TextFieldColor")
+        area.backgroundColor = .ypLightGray
         area.layer.cornerRadius = 10
         area.placeholder = "    Введите название трекера"
         area.font = UIFont(name: "YSDisplay-Medium", size: 17)
@@ -44,7 +44,7 @@ final class AddNewIrregularEventViewController: UIViewController {
         return area
     }()
     
-    private let addButton: UIButton = {
+    private lazy var addButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .gray
         button.layer.cornerRadius = 10
@@ -53,7 +53,7 @@ final class AddNewIrregularEventViewController: UIViewController {
         return button
     }()
     
-    private let cancelButton: UIButton = {
+    private lazy var cancelButton: UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 10
         button.layer.borderWidth = 1

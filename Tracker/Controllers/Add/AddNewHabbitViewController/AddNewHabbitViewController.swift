@@ -39,7 +39,7 @@ final class AddNewHabbitViewController: UIViewController, ScheduleDelegate {
     
     private let nameTextArea: UITextField = {
         let area = UITextField()
-        area.backgroundColor = UIColor(named: "TextFieldColor")
+        area.backgroundColor = .ypLightGray
         area.layer.cornerRadius = 10
         area.placeholder = "    Введите название трекера"
         area.font = UIFont(name: "YSDisplay-Medium", size: 17)
