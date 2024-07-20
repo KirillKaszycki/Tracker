@@ -111,15 +111,7 @@ class TrackerViewCell: UICollectionViewCell {
         emojiArea.text = tracker.emoji
         daysArea.text = "\(days) дней"
         trackerCellView.backgroundColor = tracker.color
-//
-//        if isCompleted {
-//            cellActionButton.setImage(UIImage(named: "done_button"), for: .normal)
-//            cellActionButton.backgroundColor = tracker.color.withAlphaComponent(0.5)
-//        } else {
-//            cellActionButton.setImage(UIImage(named: "add_button"), for: .normal)
-//            cellActionButton.backgroundColor = tracker.color
-//        }
-        
+
         let buttonImageName = isCompleted ? "done_button" : "add_button"
         let backgroundColor = isCompleted ? tracker.color.withAlphaComponent(0.5) : tracker.color
         cellActionButton.setImage(UIImage(named: buttonImageName), for: .normal)

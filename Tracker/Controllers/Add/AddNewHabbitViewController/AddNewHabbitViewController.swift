@@ -143,7 +143,7 @@ final class AddNewHabbitViewController: UIViewController, ScheduleDelegate {
     }
     
     private func moveToCategory() {
-        
+        // Implement category selection logic here
     }
     
     @objc private func textAreaChanged(_ textArea: UITextField) {
@@ -235,4 +235,3 @@ extension AddNewHabbitViewController: UITableViewDelegate {
         verification()
     }
 }
-
