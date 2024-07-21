@@ -38,17 +38,19 @@ class TrackerViewCell: UICollectionViewCell {
     private func setTrackerCell() {
         // Config general UI for cell
         let cellView = [trackerCellView, cellActionButton]
+        let sizeButton = CGFloat(34)
         cellView.forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             contentView.addSubview($0)
         }
         trackerCellView.layer.cornerRadius = 10
 
+
         NSLayoutConstraint.activate([
             trackerCellView.topAnchor.constraint(equalTo: contentView.topAnchor),
             trackerCellView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             trackerCellView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            trackerCellView.heightAnchor.constraint(equalToConstant: 90)
+            trackerCellView.heightAnchor.constraint(equalToConstant: 90),
         ])
         
         cellActionButton.setImage(UIImage(systemName: "plus"), for: .normal)
@@ -58,9 +60,9 @@ class TrackerViewCell: UICollectionViewCell {
         
         NSLayoutConstraint.activate([
             cellActionButton.topAnchor.constraint(equalTo: trackerCellView.bottomAnchor, constant: 8),
-            cellActionButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
-            cellActionButton.widthAnchor.constraint(equalToConstant: 34),
-            cellActionButton.heightAnchor.constraint(equalToConstant: 34),
+            cellActionButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            cellActionButton.widthAnchor.constraint(equalToConstant: sizeButton),
+            cellActionButton.heightAnchor.constraint(equalToConstant: sizeButton)
         ])
         
         // Filling the cell with content

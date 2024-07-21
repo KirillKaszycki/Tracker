@@ -216,6 +216,8 @@ extension TrackersViewController: AddTrackerDelegate {
             categories.remove(at: index ?? 0)
             categories.insert(updateCategory, at: index ?? 0)
         }
+        filterCellsForDay(for: .Sunday)
+        collectionView.reloadData()
     }
 }
 
@@ -278,10 +280,10 @@ extension TrackersViewController: UICollectionViewDataSource, UICollectionViewDe
 // MARK: - Mock data
 extension TrackersViewController {
     private func showMockData() {
-        let tracker1 = Tracker(id: UUID(), name: "Кошка заслонила камеру на созвоне", color: .orange, emoji: "😻", schedule: [Weekdays.Friday])
-        let tracker2 = Tracker(id: UUID(), name: "Бабушка прислала открытку в ватсапе", color: .red, emoji: "🌸", schedule: [Weekdays.Friday])
+        let tracker1 = Tracker(id: UUID(), name: "Кошка заслонила камеру на созвоне", color: .orange, emoji: "😻", schedule: [Weekdays.Saturday])
+        let tracker2 = Tracker(id: UUID(), name: "Бабушка прислала открытку в ватсапе", color: .red, emoji: "🌸", schedule: [Weekdays.Saturday])
         let tracker3 = Tracker(id: UUID(), name: "Cвидание в апреле", color: .purple, emoji: "❤️", schedule: [Weekdays.Saturday])
-        let tracker4 = Tracker(id: UUID(), name: "Поливать растения", color: .systemGreen, emoji: "❤️", schedule: [Weekdays.Friday])
+        let tracker4 = Tracker(id: UUID(), name: "Поливать растения", color: .systemGreen, emoji: "❤️", schedule: [Weekdays.Saturday])
         let category1 = TrackerCategory(header: "Домашний уют", trackersArray: [tracker4])
         let category2 = TrackerCategory(header: "Радостные мелочи", trackersArray: [tracker1, tracker2, tracker3])
         categories.append(category1)
