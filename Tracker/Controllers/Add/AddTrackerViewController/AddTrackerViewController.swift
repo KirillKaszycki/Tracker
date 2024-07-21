@@ -8,7 +8,7 @@
 import UIKit
 
 final class AddTrackerViewController: UIViewController {
-    weak var delegate: AddTrackerDelegate?
+    weak var delegate: AddNewHabbitDelegate?
 
     let titleLabel: UILabel = {
         let label = UILabel()
@@ -86,22 +86,22 @@ final class AddTrackerViewController: UIViewController {
     
     @objc func didTapHabbitButton() {
         let viewController = AddNewHabbitViewController()
-        viewController.habbitDelegate = self // Install the delegate
+        //viewController.habbitDelegate = self // Install the delegate
         viewController.modalPresentationStyle = .popover
         present(viewController, animated: true, completion: nil)
     }
     
     @objc func didTapIrregularEventButton() {
         let viewController = AddNewIrregularEventViewController()
-        viewController.habbitDelegate = self
+        //viewController.habbitDelegate = self
         viewController.modalPresentationStyle = .popover
         present(viewController, animated: true, completion: nil)
     }
 }
 
-extension AddTrackerViewController: AddNewHabbitDelegate {
-    func didAddNewHAbbit(_ tracker: Tracker) {
-        delegate?.didAddNewTracker(tracker)
-        dismiss(animated: true, completion: nil)
-    }
-}
+//extension AddTrackerViewController: AddNewHabbitDelegate {
+//    func didAddNewHAbbit(_ tracker: Tracker) {
+//        delegate?.didAddNewTracker(tracker)
+//        dismiss(animated: true, completion: nil)
+//    }
+//}

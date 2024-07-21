@@ -8,5 +8,5 @@
 import Foundation
 
 protocol AddNewHabbitDelegate: AnyObject {
-    func didAddNewHAbbit(_ tracker: Tracker)
+    func didCreateNewTracker(_ tracker: Tracker, category: String)
 }

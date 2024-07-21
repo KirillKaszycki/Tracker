@@ -7,18 +7,60 @@
 
 import UIKit
 
+protocol TrackerViewCellDelegate: AnyObject {
+    func didTapCompleteButton(tracker: Tracker, isCompleted: Bool)
+}
+
 class TrackerViewCell: UICollectionViewCell {
+    
+    static let identifier = "TrackerCell"
+    weak var delegate: TrackerViewCellDelegate?
+    
     // Cell view
-    private let trackerCellView = UIView()
-    private let trackerEmojiView = UIView()
+    private var tracker: Tracker?
+    private var calendarDate = Date()
+    private var isComplete = false
+    
+    private let trackerCellView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 16
+        view.layer.masksToBounds = true
+        return view
+    }()
+    
     // Cell content
-    let emojiArea = UILabel()
-    let daysArea = UILabel()
-    let titleArea = UILabel()
-    let cellActionButton = UIButton(type: .system)
+    private let emojiLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.textAlignment = .center
+        label.layer.masksToBounds = true
+        label.layer.cornerRadius = 12
+        return label
+    }()
+    
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
+        label.textColor = .ypWhite
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    private let daysLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14)
+        return label
+    }()
+    
+    private let completeButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: "add_button"), for: .normal)
+        button.tintColor = .black
+        button.layer.masksToBounds = true
+        return button
+    }()
+    
     var trackerID: UUID?
-    // Cell interaction
-    var buttonTap: (() -> Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -37,14 +79,15 @@ class TrackerViewCell: UICollectionViewCell {
     // Make UI for cell
     private func setTrackerCell() {
         // Config general UI for cell
-        let cellView = [trackerCellView, cellActionButton]
         let sizeButton = CGFloat(34)
+        completeButton.layer.cornerRadius = sizeButton / 2
+        completeButton.addTarget(self, action: #selector(completeButtonTapped), for: .touchUpInside)
+        let cellView = [trackerCellView, emojiLabel, titleLabel, daysLabel, completeButton]
         cellView.forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             contentView.addSubview($0)
         }
         trackerCellView.layer.cornerRadius = 10
-
 
         NSLayoutConstraint.activate([
             trackerCellView.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -53,74 +96,65 @@ class TrackerViewCell: UICollectionViewCell {
             trackerCellView.heightAnchor.constraint(equalToConstant: 90),
         ])
         
-        cellActionButton.setImage(UIImage(systemName: "plus"), for: .normal)
-        cellActionButton.tintColor = .ypWhite
-        cellActionButton.layer.cornerRadius = 17
-        cellActionButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-        
         NSLayoutConstraint.activate([
-            cellActionButton.topAnchor.constraint(equalTo: trackerCellView.bottomAnchor, constant: 8),
-            cellActionButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            cellActionButton.widthAnchor.constraint(equalToConstant: sizeButton),
-            cellActionButton.heightAnchor.constraint(equalToConstant: sizeButton)
-        ])
-        
-        // Filling the cell with content
-        let  cellContent = [trackerEmojiView, emojiArea, titleArea, daysArea]
-        cellContent.forEach {
-            $0.translatesAutoresizingMaskIntoConstraints = false
-            trackerCellView.addSubview($0)
-        }
-        
-        trackerEmojiView.layer.cornerRadius = 12
-        trackerEmojiView.backgroundColor = .ypWhite.withAlphaComponent(0.3)
-        
-        NSLayoutConstraint.activate([
-            trackerEmojiView.widthAnchor.constraint(equalToConstant: 24),
-            trackerEmojiView.heightAnchor.constraint(equalToConstant: 24),
-            trackerEmojiView.topAnchor.constraint(equalTo: trackerCellView.topAnchor, constant: 12),
-            trackerEmojiView.leadingAnchor.constraint(equalTo: trackerCellView.leadingAnchor, constant: 12)
+            emojiLabel.topAnchor.constraint(equalTo: trackerCellView.topAnchor, constant: 12),
+            emojiLabel.leadingAnchor.constraint(equalTo: trackerCellView.leadingAnchor, constant: 12),
+            emojiLabel.widthAnchor.constraint(equalToConstant: 24),
+            emojiLabel.heightAnchor.constraint(equalToConstant: 24),
         ])
         
         NSLayoutConstraint.activate([
-            emojiArea.centerXAnchor.constraint(equalTo: trackerEmojiView.centerXAnchor),
-            emojiArea.centerYAnchor.constraint(equalTo: trackerEmojiView.centerYAnchor)
+            titleLabel.topAnchor.constraint(equalTo: emojiLabel.bottomAnchor, constant: 8),
+            titleLabel.leadingAnchor.constraint(equalTo: trackerCellView.leadingAnchor, constant: 12),
+            titleLabel.trailingAnchor.constraint(equalTo: trackerCellView.trailingAnchor, constant: -12),
+            titleLabel.bottomAnchor.constraint(equalTo: trackerCellView.bottomAnchor, constant: -12),
         ])
         
-        titleArea.font = UIFont(name: "YPDisplay-Medium", size: 12)
-        titleArea.textColor = .ypWhite
-        titleArea.numberOfLines = 2
-        titleArea.textAlignment = .left
-        
         NSLayoutConstraint.activate([
-            titleArea.topAnchor.constraint(equalTo: emojiArea.bottomAnchor, constant: 8),
-            titleArea.leadingAnchor.constraint(equalTo: trackerCellView.leadingAnchor, constant: 12),
-            titleArea.trailingAnchor.constraint(equalTo: trackerCellView.trailingAnchor, constant: -12),
-            titleArea.bottomAnchor.constraint(lessThanOrEqualTo: trackerCellView.bottomAnchor, constant: -12)
+            daysLabel.topAnchor.constraint(equalTo: trackerCellView.bottomAnchor, constant: 16),
+            daysLabel.leadingAnchor.constraint(equalTo: trackerCellView.leadingAnchor, constant: 12),
         ])
         
-        daysArea.font = UIFont(name: "YPDisplay-Medium", size: 12)
-        
         NSLayoutConstraint.activate([
-            daysArea.topAnchor.constraint(equalTo: trackerCellView.bottomAnchor, constant: 16),
-            daysArea.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12)
+            completeButton.topAnchor.constraint(equalTo: trackerCellView.bottomAnchor, constant: 8),
+            completeButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            completeButton.widthAnchor.constraint(equalToConstant: sizeButton),
+            completeButton.heightAnchor.constraint(equalToConstant: sizeButton)
         ])
     }
     
-    func configTrackerCell(with tracker: Tracker, days: Int, isCompleted: Bool) {
-        trackerID = tracker.id
-        titleArea.text = tracker.name
-        emojiArea.text = tracker.emoji
-        daysArea.text = "\(days) дней"
+    func configTrackerCell(with tracker: Tracker, days: Int, isCompleted: Bool, calendar: Date) {
+        self.isComplete = isCompleted
+        self.calendarDate = calendar
+        self.tracker = tracker
+        
+        daysLabel.text = "\(days) \(days == 1 ? "день" : "дней")"
+        completeButton.isSelected = isCompleted
+        isSelected(completeButton, color: tracker.color)
+        titleLabel.text = tracker.name
         trackerCellView.backgroundColor = tracker.color
-
-        let buttonImageName = isCompleted ? "done_button" : "add_button"
-        let backgroundColor = isCompleted ? tracker.color.withAlphaComponent(0.5) : tracker.color
-        cellActionButton.setImage(UIImage(named: buttonImageName), for: .normal)
-        cellActionButton.backgroundColor = backgroundColor
+        emojiLabel.backgroundColor = tracker.color.withAlphaComponent(0.3)
     }
     
-    @objc private func buttonTapped() {
-        buttonTap?()
+    private func isSelected(_ sender: UIButton, color: UIColor) {
+        if sender.isSelected {
+            sender.setImage(UIImage(named: "done_button"), for: .normal)
+            sender.tintColor = color
+            sender.layer.opacity = 0.3
+        } else {
+            sender.setImage(UIImage(named: "add_button"), for: .normal)
+            sender.tintColor = .white
+            sender.backgroundColor = color
+            sender.layer.opacity = 1
+        }
+    }
+    
+    @objc private func completeButtonTapped(_ sender: UIButton) {
+        guard calendarDate < Date() else { return }
+        guard let tracker else { return }
+        completeButton.isSelected = !sender.isSelected
+        isSelected(sender, color: tracker.color)
+        let status = sender.isSelected
+        delegate?.didTapCompleteButton(tracker: tracker, isCompleted: status)
     }
 }

@@ -100,21 +100,30 @@ final class AddNewIrregularEventViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             tableView.topAnchor.constraint(equalTo: nameTextArea.bottomAnchor, constant: 24),
             tableView.heightAnchor.constraint(equalToConstant: 75),
-            
+
+        ])
+        
+        NSLayoutConstraint.activate([
             titleArea.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             titleArea.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             titleArea.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-
+        ])
+        
+        NSLayoutConstraint.activate([
             nameTextArea.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             nameTextArea.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             nameTextArea.topAnchor.constraint(equalTo: titleArea.bottomAnchor, constant: 38),
             nameTextArea.heightAnchor.constraint(equalToConstant: 75),
-            
+        ])
+        
+        NSLayoutConstraint.activate([
             addButton.widthAnchor.constraint(equalToConstant: width),
             addButton.heightAnchor.constraint(equalToConstant: 60),
             addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             addButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            
+        ])
+        
+        NSLayoutConstraint.activate([
             cancelButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             cancelButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             cancelButton.widthAnchor.constraint(equalToConstant: width),
@@ -163,7 +172,7 @@ final class AddNewIrregularEventViewController: UIViewController {
             emoji: "😳",
             schedule: []
         )
-        habbitDelegate?.didAddNewHAbbit(tracker)
+        habbitDelegate?.didCreateNewTracker(tracker, category: "Sample")
         dismiss(animated: true)
     }
 }

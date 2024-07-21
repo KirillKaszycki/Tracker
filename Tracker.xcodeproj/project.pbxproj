@@ -24,6 +24,7 @@
 		E31E21882C2AFDE800EB067A /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31E21872C2AFDE800EB067A /* StatisticsViewController.swift */; };
 		E31E218B2C2AFE7900EB067A /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31E218A2C2AFE7900EB067A /* TabBarController.swift */; };
 		E3A87BC52C402D77008936E6 /* TrackerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A87BC42C402D77008936E6 /* TrackerViewCell.swift */; };
+		E3CB34642C4D5BF600688CCE /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CB34632C4D5BF600688CCE /* Geometry.swift */; };
 		E3DAF7FE2C420C0600BD2329 /* AddTrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DAF7FD2C420C0600BD2329 /* AddTrackerViewController.swift */; };
 		E3DAF8022C420C6200BD2329 /* AddNewHabbitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DAF8012C420C6200BD2329 /* AddNewHabbitViewController.swift */; };
 		E3DAF8042C420C9C00BD2329 /* AddNewIrregularEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DAF8032C420C9C00BD2329 /* AddNewIrregularEventViewController.swift */; };
@@ -73,6 +74,7 @@
 		E31E21872C2AFDE800EB067A /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		E31E218A2C2AFE7900EB067A /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		E3A87BC42C402D77008936E6 /* TrackerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerViewCell.swift; sourceTree = "<group>"; };
+		E3CB34632C4D5BF600688CCE /* Geometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
 		E3DAF7FD2C420C0600BD2329 /* AddTrackerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTrackerViewController.swift; sourceTree = "<group>"; };
 		E3DAF8012C420C6200BD2329 /* AddNewHabbitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewHabbitViewController.swift; sourceTree = "<group>"; };
 		E3DAF8032C420C9C00BD2329 /* AddNewIrregularEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewIrregularEventViewController.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 				E3FB531A2C3C154800E711B6 /* Tracker.swift */,
 				E3FB531C2C3C16F600E711B6 /* TrackerCategory.swift */,
 				E3FB531E2C3C170600E711B6 /* TrackerRecord.swift */,
+				E3CB34632C4D5BF600688CCE /* Geometry.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 				E31E215A2C2AF5F900EB067A /* TrackersViewController.swift in Sources */,
 				E31E21562C2AF5F900EB067A /* AppDelegate.swift in Sources */,
 				E3146C0D2C45219B0066D66C /* AddNewHabbitDelegate.swift in Sources */,
+				E3CB34642C4D5BF600688CCE /* Geometry.swift in Sources */,
 				E3DAF8062C420CF300BD2329 /* AddTrackerDelegate.swift in Sources */,
 				E31E21582C2AF5F900EB067A /* SceneDelegate.swift in Sources */,
 				E3146C102C4521EA0066D66C /* ScheduleViewController.swift in Sources */,

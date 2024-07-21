@@ -164,7 +164,7 @@ final class AddNewHabbitViewController: UIViewController, ScheduleDelegate {
             emoji: "😳",
             schedule: chosenDays
         )
-        habbitDelegate?.didAddNewHAbbit(tracker)
+        habbitDelegate?.didCreateNewTracker(tracker, category: "Sample")
         dismiss(animated: true)
     }
     
