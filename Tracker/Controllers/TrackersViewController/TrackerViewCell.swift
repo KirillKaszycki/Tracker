@@ -53,9 +53,9 @@ class TrackerViewCell: UICollectionViewCell {
     }()
     
     private let completeButton: UIButton = {
-        let button = UIButton(type: .system)
+        let button = UIButton(type: .custom)
         button.setImage(UIImage(named: "add_button"), for: .normal)
-        button.tintColor = .white
+        button.tintColor = .ypWhite
         button.layer.masksToBounds = true
         button.backgroundColor = .clear
         return button
@@ -162,7 +162,7 @@ class TrackerViewCell: UICollectionViewCell {
         guard calendarDate < Date() else { return }
         guard let tracker else { return }
         completeButton.isSelected = !sender.isSelected
-        isSelected(sender, color: tracker.color)
+        //isSelected(sender, color: tracker.color)
         let status = sender.isSelected
         delegate?.didTapCompleteButton(tracker: tracker, isCompleted: status)
     }
