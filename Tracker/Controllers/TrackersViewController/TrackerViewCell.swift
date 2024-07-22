@@ -55,8 +55,6 @@ class TrackerViewCell: UICollectionViewCell {
     
     private let completeButton: UIButton = {
         let button = UIButton(type: .custom)
-        //button.setImage(UIImage(named: "add_button"), for: .normal)
-        button.tintColor = .ypWhite
         button.layer.masksToBounds = true
         button.backgroundColor = .clear
         return button
@@ -78,7 +76,6 @@ class TrackerViewCell: UICollectionViewCell {
         backgroundColor = nil
         completeButton.isSelected = false
         completeButton.setImage(UIImage(named: "add_button"), for: .normal)
-        completeButton.tintColor = .ypWhite
         completeButton.backgroundColor = .white.withAlphaComponent(0)
         completeButton.layer.opacity = 1
     }
@@ -146,23 +143,17 @@ class TrackerViewCell: UICollectionViewCell {
     }
     
     private func isSelected(_ sender: UIButton, color: UIColor) {
-        let img: UIImage = {
-            let image = UIImage(named: "add_button")
-            image?.withTintColor(.white)
-            return image ?? UIImage()
-        }()
+        
+        let img = UIImage(named: "add_button")?.withTintColor(.white)
         
         if sender.isSelected {
             sender.setImage(UIImage(named: "done_button"), for: .normal)
             sender.tintColor = .ypWhite
-            sender.backgroundColor = color
-            sender.layer.opacity = 0.3
+            sender.backgroundColor = color.withAlphaComponent(0.3)
         } else {
-            //sender.setImage(UIImage(named: "add_button"), for: .normal)
             sender.setImage(img, for: .normal)
             sender.tintColor = .ypWhite
-            sender.backgroundColor = color
-            sender.layer.opacity = 1
+            sender.backgroundColor = color.withAlphaComponent(1)
         }
     }
     
@@ -170,7 +161,6 @@ class TrackerViewCell: UICollectionViewCell {
         guard calendarDate < Date() else { return }
         guard let tracker else { return }
         completeButton.isSelected = !sender.isSelected
-        //isSelected(sender, color: tracker.color)
         let status = sender.isSelected
         delegate?.didTapCompleteButton(tracker: tracker, isCompleted: status)
     }
