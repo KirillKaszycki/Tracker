@@ -25,6 +25,7 @@ class TrackerViewCell: UICollectionViewCell {
         let view = UIView()
         view.layer.cornerRadius = 16
         view.layer.masksToBounds = true
+        view.tintColor = .ypWhite
         return view
     }()
     
@@ -54,7 +55,7 @@ class TrackerViewCell: UICollectionViewCell {
     
     private let completeButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setImage(UIImage(named: "add_button"), for: .normal)
+        //button.setImage(UIImage(named: "add_button"), for: .normal)
         button.tintColor = .ypWhite
         button.layer.masksToBounds = true
         button.backgroundColor = .clear
@@ -78,7 +79,7 @@ class TrackerViewCell: UICollectionViewCell {
         completeButton.isSelected = false
         completeButton.setImage(UIImage(named: "add_button"), for: .normal)
         completeButton.tintColor = .ypWhite
-        completeButton.backgroundColor = nil
+        completeButton.backgroundColor = .white.withAlphaComponent(0)
         completeButton.layer.opacity = 1
     }
     
@@ -145,13 +146,20 @@ class TrackerViewCell: UICollectionViewCell {
     }
     
     private func isSelected(_ sender: UIButton, color: UIColor) {
+        let img: UIImage = {
+            let image = UIImage(named: "add_button")
+            image?.withTintColor(.white)
+            return image ?? UIImage()
+        }()
+        
         if sender.isSelected {
             sender.setImage(UIImage(named: "done_button"), for: .normal)
             sender.tintColor = .ypWhite
             sender.backgroundColor = color
             sender.layer.opacity = 0.3
         } else {
-            sender.setImage(UIImage(named: "add_button"), for: .normal)
+            //sender.setImage(UIImage(named: "add_button"), for: .normal)
+            sender.setImage(img, for: .normal)
             sender.tintColor = .ypWhite
             sender.backgroundColor = color
             sender.layer.opacity = 1
