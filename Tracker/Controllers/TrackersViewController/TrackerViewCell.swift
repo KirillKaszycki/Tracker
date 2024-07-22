@@ -55,8 +55,9 @@ class TrackerViewCell: UICollectionViewCell {
     private let completeButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "add_button"), for: .normal)
-        button.tintColor = .black
+        button.tintColor = .white
         button.layer.masksToBounds = true
+        button.backgroundColor = .clear
         return button
     }()
     
@@ -74,19 +75,25 @@ class TrackerViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         backgroundColor = nil
+        completeButton.isSelected = false
+        completeButton.setImage(UIImage(named: "add_button"), for: .normal)
+        completeButton.tintColor = .white
+        completeButton.backgroundColor = nil
+        completeButton.layer.opacity = 1
     }
     
     // Make UI for cell
     private func setTrackerCell() {
-        // Config general UI for cell
         let sizeButton = CGFloat(34)
         completeButton.layer.cornerRadius = sizeButton / 2
         completeButton.addTarget(self, action: #selector(completeButtonTapped), for: .touchUpInside)
+        
         let cellView = [trackerCellView, emojiLabel, titleLabel, daysLabel, completeButton]
         cellView.forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             contentView.addSubview($0)
         }
+        
         trackerCellView.layer.cornerRadius = 10
 
         NSLayoutConstraint.activate([
@@ -128,6 +135,7 @@ class TrackerViewCell: UICollectionViewCell {
         self.calendarDate = calendar
         self.tracker = tracker
         
+        emojiLabel.text = tracker.emoji
         daysLabel.text = "\(days) \(days == 1 ? "день" : "дней")"
         completeButton.isSelected = isCompleted
         isSelected(completeButton, color: tracker.color)
@@ -140,6 +148,7 @@ class TrackerViewCell: UICollectionViewCell {
         if sender.isSelected {
             sender.setImage(UIImage(named: "done_button"), for: .normal)
             sender.tintColor = color
+            sender.backgroundColor = .clear
             sender.layer.opacity = 0.3
         } else {
             sender.setImage(UIImage(named: "add_button"), for: .normal)
