@@ -77,7 +77,7 @@ class TrackerViewCell: UICollectionViewCell {
         backgroundColor = nil
         completeButton.isSelected = false
         completeButton.setImage(UIImage(named: "add_button"), for: .normal)
-        completeButton.tintColor = .white
+        completeButton.tintColor = .ypWhite
         completeButton.backgroundColor = nil
         completeButton.layer.opacity = 1
     }
@@ -147,12 +147,12 @@ class TrackerViewCell: UICollectionViewCell {
     private func isSelected(_ sender: UIButton, color: UIColor) {
         if sender.isSelected {
             sender.setImage(UIImage(named: "done_button"), for: .normal)
-            sender.tintColor = color
-            sender.backgroundColor = .clear
+            sender.tintColor = .ypWhite
+            sender.backgroundColor = color
             sender.layer.opacity = 0.3
         } else {
             sender.setImage(UIImage(named: "add_button"), for: .normal)
-            sender.tintColor = .white
+            sender.tintColor = .ypWhite
             sender.backgroundColor = color
             sender.layer.opacity = 1
         }
